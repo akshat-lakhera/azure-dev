@@ -320,8 +320,8 @@ func Test_HooksRunAction_HookNameTelemetry(t *testing.T) {
 						assert.Equal(t, tt.hookName, attr.Value.AsString())
 					}
 					if !tt.wantName {
-						assert.NotContains(t, attr.Value.Emit(), tt.hookName)
-						assert.NotContains(t, attr.Value.Emit(), fields.CaseInsensitiveHash(tt.hookName))
+						assert.NotContains(t, attr.Value.String(), tt.hookName)
+						assert.NotContains(t, attr.Value.String(), fields.CaseInsensitiveHash(tt.hookName))
 					}
 				}
 			}

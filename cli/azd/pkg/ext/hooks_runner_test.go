@@ -1448,8 +1448,8 @@ func TestSetHookSpanAttributes(t *testing.T) {
 
 		for _, attr := range span.Attributes {
 			assert.NotEqual(t, fields.HooksNameKey.Key, attr.Key)
-			assert.NotContains(t, attr.Value.Emit(), custom)
-			assert.NotContains(t, attr.Value.Emit(), fields.CaseInsensitiveHash(custom))
+			assert.NotContains(t, attr.Value.String(), custom)
+			assert.NotContains(t, attr.Value.String(), fields.CaseInsensitiveHash(custom))
 		}
 		assert.Equal(t, "service", hookSpanAttr(t, span, fields.HooksTypeKey.Key).AsString())
 	})
