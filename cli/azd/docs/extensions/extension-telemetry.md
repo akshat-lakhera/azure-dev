@@ -2,15 +2,19 @@
 
 <!-- cspell:ignore tostring -->
 
-This guide is for extension authors whose telemetry has passed privacy review
-and whose extension is published to the official `azd` registry. It explains
+This guide is for extension authors whose telemetry is covered by the service's
+approved collection and handling scope and whose extension is published to the
+official `azd` registry. It explains
 how to ask `azd` to record a usage signal on the extension's behalf — for
 example, which deployment mode a user picked.
 
 > [!IMPORTANT]
-> Any telemetry must go through a privacy review to ensure that it respects
-> user privacy before you start collecting it. See [Your responsibility for
-> content](#your-responsibility-for-content) below.
+> Have an azd maintainer assess telemetry changes against the approved collection
+> and handling scope using the
+> [privacy review checklist](../../../../docs/specs/metrics-audit/privacy-review-checklist.md).
+> A new event or field does not automatically require a separate formal review.
+> Collection outside the approved scope waits for the required approval.
+> See [Your responsibility for content](#your-responsibility-for-content) below.
 
 Telemetry is a stable gRPC service since azd 1.36.0, offered to eligible extensions installed
 from the official `azd` registry. Import

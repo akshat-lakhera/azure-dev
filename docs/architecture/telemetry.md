@@ -245,7 +245,7 @@ flowchart LR
   - `CustomerContent`
   - `EndUserPseudonymizedInformation`
   - `OrganizationalIdentifiableInformation`
-- **Privacy review required** for: new telemetry fields, classification changes, any unhashed PII
+- **Approval coverage:** Have an azd maintainer assess telemetry changes against the approved collection and handling scope using the [privacy review checklist](../specs/metrics-audit/privacy-review-checklist.md). A new field or classification correction does not automatically require a separate formal review. Collection outside the approved scope waits for the required approval.
 
 ## Key Files
 

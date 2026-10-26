@@ -45,13 +45,15 @@ Use the `tracing.Start` helper to start a new span:
 ```go
 ctx, span := tracing.Start(ctx, events.MyNewEvent)
 // ... your logic here
-//  don't forget to span.SetStatus(codes.Err, "<description>) to mark success or failure
-span.End()
+span.EndWithStatus(err)
 ```
 
 * `span.End()` marks completion of the event.
 * `span.EndWithStatus(err)` sets an appropriate error code if something failed.
 * Timing and duration are automatically recorded.
+
+Use `EndWithStatus` rather than putting raw error messages in a status description.
+The Application Insights exporter records that description as the response code.
 
 > Note: Traces are automatically exported and uploaded asynchronously. Simply logging the span will be sufficient.
 

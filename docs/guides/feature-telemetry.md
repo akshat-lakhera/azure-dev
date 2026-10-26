@@ -140,9 +140,9 @@ func (a *myAction) Run(ctx context.Context) (*actions.ActionResult, error) {
 If your feature has distinct sub-operations worth tracking separately:
 
 ```go
-func (s *myService) ProcessItems(ctx context.Context, items []Item) error {
+func (s *myService) ProcessItems(ctx context.Context, items []Item) (err error) {
     ctx, span := tracing.Start(ctx, events.MyFeatureEvent)
-    defer span.End()
+    defer func() { span.EndWithStatus(err) }()
 
     // Set attributes on this span
     span.SetAttributes(
@@ -151,14 +151,13 @@ func (s *myService) ProcessItems(ctx context.Context, items []Item) error {
 
     // ... do work ...
 
-    if err != nil {
-        span.SetStatus(codes.Error, err.Error())
-        return err
-    }
-
-    return nil
+    return err
 }
 ```
+
+`EndWithStatus` records classified error information instead of raw error text.
+Do not pass `err.Error()` to `SetStatus`: the status description is exported as the
+Application Insights response code.
 
 ### For Extension Commands
 
